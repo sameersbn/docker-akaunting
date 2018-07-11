@@ -1,7 +1,7 @@
-FROM ubuntu:xenial-20180525
+FROM ubuntu:bionic-20180526
 LABEL maintainer="sameer@damagehead.com"
 
-ENV PHP_VERSION=7.0 \
+ENV PHP_VERSION=7.2 \
     AKAUNTING_VERSION=1.2.10 \
     AKAUNTING_USER=www-data \
     AKAUNTING_INSTALL_DIR=/var/www/akaunting \
@@ -11,10 +11,8 @@ ENV PHP_VERSION=7.0 \
 ENV AKAUNTING_BUILD_DIR=${AKAUNTING_CACHE_DIR}/build \
     AKAUNTING_RUNTIME_DIR=${AKAUNTING_CACHE_DIR}/runtime
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8B3981E7A6852F782CC4951600A6F0A3C300EE8C \
- && echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" >> /etc/apt/sources.list \
- && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN apt update \
+ && DEBIAN_FRONTEND=noninteractive apt install -y \
       sudo wget unzip nginx mysql-client gettext-base \
       php${PHP_VERSION}-fpm php${PHP_VERSION}-cli php${PHP_VERSION}-mysql \
       php${PHP_VERSION}-gd php${PHP_VERSION}-curl php${PHP_VERSION}-zip \
