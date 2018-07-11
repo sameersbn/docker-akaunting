@@ -1,0 +1,51 @@
+version: '2'
+
+services:
+  mysql:
+    restart: always
+    image: sameersbn/mysql:latest
+    environment:
+    - DB_USER=akaunting
+    - DB_PASS=password
+    - DB_NAME=akaunting_db
+    volumes:
+    - /srv/docker/akaunting/mysql:/var/lib/mysql
+
+  akaunting:
+    restart: always
+    image: sameersbn/akaunting:1.2.10
+    command: app:akaunting
+    environment:
+    - DEBUG=false
+    - TZ=Asia/Kolkata
+
+    - DB_HOST=mysql
+    - DB_USER=akaunting
+    - DB_PASS=password
+    - DB_NAME=akaunting_db
+
+    - AKAUNTING_URL=http://localhost:10080
+
+    - AKAUNTING_COMPANY_NAME=
+    - AKAUNTING_COMPANY_EMAIL=
+
+    - AKAUNTING_ADMIN_EMAIL=
+    - AKAUNTING_ADMIN_PASSWORD=
+
+    - AKAUNTING_BACKUPS_EXPIRY=0
+    depends_on:
+    - mysql
+    volumes:
+    - /srv/docker/akaunting/akaunting:/var/lib/akaunting
+
+  nginx:
+    restart: always
+    image: sameersbn/akaunting:1.2.10
+    command: app:nginx
+    environment:
+    - AKAUNTING_PHP_FPM_HOST=akaunting
+    - AKAUNTING_PHP_FPM_PORT=9000
+    depends_on:
+    - akaunting
+    ports:
+    - "10080:80"
