@@ -82,7 +82,7 @@ docker run --name akaunting-mysql -itd --restart=always \
   --env 'DB_NAME=akaunting_db' \
   --env 'DB_USER=akaunting' --env 'DB_PASS=password' \
   --volume /srv/docker/akaunting/mysql:/var/lib/mysql \
-  sameersbn/mysql:latest
+  sameersbn/mysql:5.7.24
 ```
 
 Step 2. Launch the Akaunting php-fpm container

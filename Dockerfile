@@ -22,15 +22,21 @@ RUN apt update \
  && rm -rf /var/lib/apt/lists/*
 
 COPY assets/build/ ${AKAUNTING_BUILD_DIR}/
+
 RUN bash ${AKAUNTING_BUILD_DIR}/install.sh
 
 COPY assets/runtime/ ${AKAUNTING_RUNTIME_DIR}/
+
 COPY assets/tools/ /usr/bin/
+
 COPY entrypoint.sh /sbin/entrypoint.sh
+
 RUN chmod 755 /sbin/entrypoint.sh
 
 WORKDIR ${AKAUNTING_INSTALL_DIR}
+
 ENTRYPOINT ["/sbin/entrypoint.sh"]
+
 CMD ["app:akaunting"]
 
 EXPOSE 80/tcp 9000/tcp

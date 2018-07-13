@@ -3,7 +3,7 @@ version: '2'
 services:
   mysql:
     restart: always
-    image: sameersbn/mysql:latest
+    image: sameersbn/mysql:5.7.24
     environment:
     - DB_USER=akaunting
     - DB_PASS=password
