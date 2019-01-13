@@ -11,8 +11,8 @@ ENV PHP_VERSION=7.2 \
 ENV AKAUNTING_BUILD_DIR=${AKAUNTING_CACHE_DIR}/build \
     AKAUNTING_RUNTIME_DIR=${AKAUNTING_CACHE_DIR}/runtime
 
-RUN apt update \
- && DEBIAN_FRONTEND=noninteractive apt install -y \
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       sudo wget unzip nginx mysql-client gettext-base \
       php${PHP_VERSION}-fpm php${PHP_VERSION}-cli php${PHP_VERSION}-mysql \
       php${PHP_VERSION}-gd php${PHP_VERSION}-curl php${PHP_VERSION}-zip \
