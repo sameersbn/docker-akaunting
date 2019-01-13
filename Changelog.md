@@ -1,5 +1,8 @@
 # ChangeLog
 
+**latest**
+akaunting: upgrade to 1.3.9
+
 **1.3.0**
 akaunting: upgrade to 1.3.0
 
