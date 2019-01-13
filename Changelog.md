@@ -1,6 +1,6 @@
 # ChangeLog
 
-**latest**
+**1.2.16**
 akaunting: upgrade to 1.2.16
 
 **1.2.10**
