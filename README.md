@@ -1,6 +1,6 @@
 [![Docker Repository on Quay.io](https://quay.io/repository/sameersbn/akaunting/status "Docker Repository on Quay.io")](https://quay.io/repository/sameersbn/akaunting)
 
-# sameersbn/akaunting:1.2.16
+# sameersbn/akaunting:1.3.0
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -50,7 +50,7 @@ Automated builds of the image are available on [Dockerhub](https://hub.docker.co
 > **Note**: Builds are also available on [Quay.io](https://quay.io/repository/sameersbn/akaunting)
 
 ```bash
-docker pull sameersbn/akaunting:1.2.16
+docker pull sameersbn/akaunting:1.3.0
 ```
 
 Alternatively you can build the image yourself.
@@ -92,7 +92,7 @@ docker run --name akaunting -itd --restart=always \
   --env AKAUNTING_URL=http://akaunting.example.com:10080 \
   --link akaunting-mysql:mysql \
   --volume /srv/docker/akaunting/akaunting:/var/lib/akaunting \
-  sameersbn/akaunting:1.2.16 app:akaunting
+  sameersbn/akaunting:1.3.0 app:akaunting
 ```
 
 Step 3. Launch a NGINX frontend container
@@ -101,7 +101,7 @@ Step 3. Launch a NGINX frontend container
 docker run --name akaunting-nginx -itd --restart=always \
   --link akaunting:php-fpm \
   --publish 10080:80 \
-  sameersbn/akaunting:1.2.16 app:nginx
+  sameersbn/akaunting:1.3.0 app:nginx
 ```
 
 Point your browser to `http://akaunting.example.com:10080` and login using the default username and password:
@@ -142,7 +142,7 @@ Relaunch the container with the `app:backup:create` argument.
 
 ```bash
 docker run --name akaunting -it --rm [OPTIONS] \
-  sameersbn/akaunting:1.2.16 app:backup:create
+  sameersbn/akaunting:1.3.0 app:backup:create
 ```
 
 The backup will be created in the `backups/` folder of the [Persistent](#persistence) volume. You can change the location using the `AKAUNTING_BACKUPS_DIR` configuration parameter.
@@ -171,7 +171,7 @@ Relaunch the container with the `app:backup:restore` argument. Ensure you launch
 
 ```bash
 docker run --name akaunting -it --rm [OPTIONS] \
-  sameersbn/akaunting:1.2.16 app:backup:restore
+  sameersbn/akaunting:1.3.0 app:backup:restore
 ```
 
 A list of existing backups will be displayed. Select a backup you wish to restore.
@@ -180,7 +180,7 @@ To avoid this interaction you can specify the backup filename using the `BACKUP`
 
 ```bash
 docker run --name akaunting -it --rm [OPTIONS] \
-  sameersbn/akaunting:1.2.16 app:backup:restore BACKUP=1417624827_akaunting_backup.tar
+  sameersbn/akaunting:1.3.0 app:backup:restore BACKUP=1417624827_akaunting_backup.tar
 ```
 
 ## Upgrading
@@ -190,7 +190,7 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull sameersbn/akaunting:1.2.16
+  docker pull sameersbn/akaunting:1.3.0
   ```
 
   2. Stop the currently running image:
@@ -210,7 +210,7 @@ To upgrade to newer releases:
   ```bash
   docker run -name akaunting -itd \
     [OPTIONS] \
-    sameersbn/akaunting:1.2.16
+    sameersbn/akaunting:1.3.0
   ```
 
 ## Shell Access
